@@ -9,7 +9,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 // import mongoose
 const mongoose = require ('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/db_goscapesbwa',{ 
+mongoose.connect('mongodb+srv://goscapes:goscapes@cluster0.njauf.mongodb.net/db_staycation?retryWrites=true&w=majority',{ 
   useNewUrlParser: true,
   
 });
