@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cors = require("cors");
 // import mongoose
 const mongoose = require ('mongoose');
 mongoose.connect('mongodb+srv://goscapes:goscapes@cluster0.njauf.mongodb.net/db_staycation?retryWrites=true&w=majority',{ 
@@ -22,6 +23,7 @@ const apiRouter = require('./routes/api');
 var app = express();
 
 // view engine setup
+app.use(cors())
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
