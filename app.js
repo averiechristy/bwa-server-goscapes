@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 var bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cors = require("cors");
 // import mongoose
 const mongoose = require ('mongoose');
 mongoose.connect('mongodb+srv://goscapes:goscapes@cluster0.njauf.mongodb.net/db_staycation?retryWrites=true&w=majority',{ 
@@ -20,7 +22,7 @@ var usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin');
 const apiRouter = require('./routes/api');
 var app = express();
-
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -31,11 +33,13 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 60000}
 }));
+
 app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/sb-admin-2',express.static(path.join(__dirname,'node_modules/startbootstrap-sb-admin-2')));
 
